@@ -11,6 +11,15 @@ exports.getAllRestaurants = async (req, res) => {
     }
 };
 
+exports.getAddRestaurants = async (req, res) => {
+    try {
+        const restaurants = await Restaurant.find();
+        res.render('add', { restaurants });
+    } catch (err) {
+        res.status(500).send(err);
+    }
+};
+
 // Add a new restaurant
 exports.addRestaurant = async (req, res) => {
     const { name, cuisine, location, rating } = req.body;
